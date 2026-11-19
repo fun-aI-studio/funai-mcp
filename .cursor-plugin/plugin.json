@@ -1,0 +1,36 @@
+{
+  "name": "funai-studio",
+  "displayName": "FunAI Studio",
+  "description": "Generate images, video, audio, 3D and text with hundreds of AI models, Tools and templates.",
+  "version": "1.0.0",
+  "author": {
+    "name": "FunAI",
+    "email": "support@funsoltech.com"
+  },
+  "publisher": "FunAI",
+  "homepage": "https://funai.art/mcp",
+  "repository": "https://github.com/fun-aI-studio/funai-mcp",
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "keywords": [
+    "funai",
+    "image generation",
+    "video generation",
+    "text to speech",
+    "music",
+    "3d",
+    "video editor",
+    "mcp"
+  ],
+  "category": "integrations",
+  "tags": [
+    "funai",
+    "media",
+    "image",
+    "video",
+    "audio",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "art.funai/studio",
+  "title": "FunAI Studio",
+  "description": "Generate images, video, audio, 3D and text with hundreds of AI models, Tools and templates.",
+  "version": "1.1.0",
+  "websiteUrl": "https://funai.art/mcp",
+  "repository": {
+    "url": "https://github.com/fun-aI-studio/funai-mcp",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://funai.art/icons/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    },
+    {
+      "src": "https://funai.art/brand_favicon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.funai.art"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "funai-mcp",
+      "version": "1.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FUNAI_API_KEY",
+          "description": "Optional developer API key from https://developers.funai.art/keys. Usage then bills the developer API balance. Leave it unset to sign in to FunAI in the browser instead.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "FUNAI_MCP_URL",
+          "description": "Optional server URL. Defaults to https://mcp.funai.art.",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "https://mcp.funai.art"
+        }
+      ]
+    }
+  ]
+}

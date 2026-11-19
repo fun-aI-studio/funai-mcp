@@ -1,0 +1,41 @@
+{
+  "name": "funai-mcp",
+  "version": "1.1.0",
+  "description": "Stdio bridge to the FunAI Studio MCP server (https://mcp.funai.art) for MCP clients that cannot connect to a remote server.",
+  "mcpName": "art.funai/studio",
+  "type": "module",
+  "bin": {
+    "funai-mcp": "bin/funai-mcp.js"
+  },
+  "files": [
+    "bin/",
+    "src/"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "funai",
+    "ai",
+    "image-generation",
+    "video-generation",
+    "stdio"
+  ],
+  "homepage": "https://funai.art/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fun-aI-studio/funai-mcp.git",
+    "directory": "npm"
+  },
+  "bugs": {
+    "url": "https://github.com/fun-aI-studio/funai-mcp/issues",
+    "email": "support@funsoltech.com"
+  },
+  "author": "FunAI <support@funsoltech.com>",
+  "license": "MIT"
+}
