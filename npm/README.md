@@ -10,6 +10,9 @@ stream, including progress notifications) to stdout, one per line. It has no dep
 
 ## Use it
 
+> Not on npm yet (release coming soon). Until then, use `node <clone>/npm/bin/funai-mcp.js`
+> in place of `npx -y funai-mcp` below.
+
 Requires Node.js 18 or later. In your MCP client's configuration:
 
 ```json
