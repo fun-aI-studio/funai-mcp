@@ -100,7 +100,7 @@ needs nothing else.
 
 ### Clients that only run local (stdio) servers
 
-Use the [`funai-mcp`](npm/) bridge. It runs on your computer, relays to
+Use the [`funai-mcp`](https://www.npmjs.com/package/funai-mcp) bridge ([source](npm/)). It runs on your computer, relays to
 `https://mcp.funai.art`, and opens your browser to sign in the first time:
 
 ```json
@@ -112,9 +112,6 @@ Use the [`funai-mcp`](npm/) bridge. It runs on your computer, relays to
 ```
 
 Requires Node.js 18 or later. See [npm/README.md](npm/README.md) for options.
-
-> The npm release of `funai-mcp` is coming soon. Until then, run it from a clone of this
-> repository: `"command": "node", "args": ["/path/to/funai-mcp/npm/bin/funai-mcp.js"]`.
 
 ### Scripts and API keys
 
