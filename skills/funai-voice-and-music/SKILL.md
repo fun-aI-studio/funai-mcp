@@ -11,6 +11,8 @@ always needs a deliberate model choice. Find the right kind of model first.
 
 ## Rules that always apply
 
+- If the person types a FunAI slash command (`/remove-background`, `/halloween`) or pastes a
+  funai.art link, pass it to `resolve_command` first (see the funai-tools-and-templates skill).
 - Offer models by **name and price**; never ask for or show ids.
 - Say the price before running anything long (a full narration, a long track) and wait for
   a yes. Speech is usually priced per 1,000 characters; music and effects per few seconds.

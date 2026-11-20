@@ -1,6 +1,6 @@
 ---
 name: funai-tools-and-templates
-description: Use FunAI's one-shot Tools and ready-made templates, bring local files into FunAI, and reach any model's full inputs. Use when the person wants a packaged result such as face swap, upscale, background removal, product shots, virtual try-on or a trend template, when they give you a file on their computer to use as input, or when a model needs options the generate tools do not expose. Covers list_tools/run_tool, list_templates/apply_template, upload_file, get_model_schema/run_model and list_generations.
+description: Use FunAI's one-shot Tools and ready-made templates, bring local files into FunAI, and reach any model's full inputs. Use when the person types a FunAI slash command or pastes a funai.art link (/remove-background, /edit-video, /halloween, /halloween/<preset>), wants a packaged result such as face swap, upscale, background removal, product shots, virtual try-on or a trend template, gives you a file on their computer to use as input, or needs model options the generate tools do not expose. Covers resolve_command/list_categories, list_tools/run_tool, list_templates/apply_template, upload_file, get_model_schema/run_model and list_generations.
 license: MIT
 ---
 
@@ -13,6 +13,30 @@ license: MIT
 - Everything that generates spends credits. Say the price before running, and ask before
   anything above a few cents or any batch.
 - Results are published with a shareable link by default; pass `private: true` when asked.
+
+## Slash commands and funai.art links
+
+People can type a command such as `/remove-background`, `/edit-video`, `/upscale`,
+`/halloween` or `/halloween/blood-moon-howl-transformation`, or paste a funai.art preset,
+Tool or model link. Commands come from FunAI's live catalogue: every task, Tool, preset
+collection and preset has one.
+
+1. Pass exactly what they typed (or the link) to `resolve_command`. It is free and runs
+   nothing. It answers with what the command is (a task, Tool, preset collection, preset or
+   model), its price, the inputs it needs and a `next_step` naming the tool to call.
+2. Tell the person what it does and what it costs, ask for any missing input (usually a
+   photo or a video), and run it with the tool `next_step` names (`run_tool`,
+   `apply_template`, `generate_*` or `run_model`) only after they agree.
+3. If the answer offers options (a task that works on images and on video, a typo that
+   could mean two things, a model name that matches several), show them by name and ask.
+   A typo read with confidence comes back with a note such as "Read '/haloween' as
+   /halloween": mention it in passing.
+4. Where a Tool and a task share a name, `/tools/<slug>` opens the Tool and
+   `/presets/<collection>` opens a preset collection.
+5. "Which commands are there?" is `list_categories` (preset collections, Tools or tasks).
+
+In Claude Code the tasks and preset collections are also MCP prompts, such as
+`/mcp__funai__remove-background` and `/mcp__funai__halloween`; they start the same flow.
 
 ## Tools: one-shot outcomes
 
@@ -30,12 +54,13 @@ background removal, product shots, lip sync and more.
 
 ## Templates: a look with the prompt already written
 
-1. `list_templates` with a `query` ("product shot", "anime"), a `media_type`, or a
-   `tool_slug`. Each template lists the slots to fill (a photo, a product name, a style).
+1. `list_templates` with a `query` ("product shot", "anime"), a `media_type`, a
+   `category` (a preset collection such as `halloween`), or a `tool_slug`. Each template
+   lists the slots to fill (a photo, a product name, a style).
 2. Ask the person for anything required that you do not have.
-3. `apply_template` with `template_id` and `slot_values` keyed by slot key. Image slots take a
-   public https URL or a `file_url` from `upload_file`. Leave out `model` to use the
-   template's best compatible model. `output_count` makes several variations, and multiplies
+3. `apply_template` with `template_id` (or the preset's `/collection/preset` command) and
+   `slot_values` keyed by slot key. Image slots take a public https URL or a `file_url`
+   from `upload_file`. Leave out `model` to use the template's best compatible model. `output_count` makes several variations, and multiplies
    the price, so confirm it.
 4. A missing required slot fails without charging and lists the slots.
 

@@ -141,6 +141,7 @@ Paid tools are marked `readOnlyHint: false`, so clients ask before running them.
 
 | Area | Tools | Cost |
 | --- | --- | --- |
+| Slash commands and links | `resolve_command`, `list_categories` | free |
 | Find models and prices | `list_models`, `get_model_schema`, `estimate_cost` | free |
 | Your account | `get_credit_balance`, `list_generations`, `get_job_status` | free |
 | Generate | `generate_image`, `generate_video`, `generate_audio`, `generate_3d`, `generate_text` | spends credits |
@@ -150,9 +151,33 @@ Paid tools are marked `readOnlyHint: false`, so clients ask before running them.
 | Stop a job | `cancel_job` | free while queued; full price once started, and only after you agree |
 | Video editor | `editor_sessions`, `editor_commands` (free); `editor_run` | billed commands spend credits |
 | Server render | `render_project`; `render_status` (free) | spends credits |
+| FunAI documentation | `search_docs`, `read_docs` | free |
 
 The server also offers resources (`funai://guide`, `funai://models/{model_id}`,
-`funai://jobs/{job_id}`) and prompts (`product-video`, `storyboard`, `edit-photo`).
+`funai://jobs/{job_id}`) and prompts: one for every task and preset collection in the
+catalogue (`remove-background`, `edit-video`, `halloween` and more), plus `product-video`,
+`storyboard` and `edit-photo`.
+
+### Slash commands
+
+Type a command in the chat and the assistant opens it. It tells you what it does, what it
+costs and what it needs from you, and runs it only after you agree.
+
+| You type | What opens |
+| --- | --- |
+| `/remove-background`, `/upscale`, `/lip-sync`, `/text-to-speech` | A task, with the models that do it, by name and price |
+| `/edit-image`, `/edit-video`, `/upscale-video` | The same task for one kind of file |
+| `/image-background-remover`, `/ai-cloth-changer` | A FunAI Tool, by its name on funai.art |
+| `/halloween`, `/gta-vi` | A preset collection and its presets |
+| `/halloween/blood-moon-howl-transformation` | One preset: what to upload, the model and the price |
+| A funai.art preset, Tool or model link | Whatever the link shows |
+
+Commands come from the live catalogue, so new Tools and presets get one on their own. Close
+spellings and typos work (`/remove-bg`, `/lipsync`, `/haloween`), and the assistant says how
+it read a typo. Where a Tool and a task share a name, `/tools/upscale` opens the Tool and
+`/presets/<collection>` opens a collection. A command never spends anything on its own.
+Ask "which FunAI commands are there?" for the list. In Claude Code the tasks and collections
+are also commands of their own, such as `/mcp__funai__remove-background`.
 
 Results get a shareable funai.art link that opens without signing in. Ask for a result to be
 private and the assistant passes `private: true`. Uploaded input files stay private to your
@@ -226,7 +251,7 @@ use FunAI well: names instead of ids, prices before paid runs, and the right too
 | [funai-create-images](skills/funai-create-images/SKILL.md) | Choosing an image model, prompts, edits with masks and references |
 | [funai-make-videos](skills/funai-make-videos/SKILL.md) | Text or image to video, start and end frames, length and price, long jobs, stopping |
 | [funai-voice-and-music](skills/funai-voice-and-music/SKILL.md) | Speech, music, sound effects, transcription, lip sync |
-| [funai-tools-and-templates](skills/funai-tools-and-templates/SKILL.md) | FunAI Tools, templates, uploading local files, any model's full inputs |
+| [funai-tools-and-templates](skills/funai-tools-and-templates/SKILL.md) | Slash commands and funai.art links, FunAI Tools, templates, uploading local files, any model's full inputs |
 | [funai-spend-wisely](skills/funai-spend-wisely/SKILL.md) | Estimates, balance, spending limits, what to do when credits run out |
 | [funai-video-editor](skills/funai-video-editor/SKILL.md) | Editing an open FunAI editor project and server renders |
 

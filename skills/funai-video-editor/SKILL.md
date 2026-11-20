@@ -12,6 +12,8 @@ on their real project, so be deliberate.
 
 ## Rules that always apply
 
+- If the person types a FunAI slash command (`/remove-background`, `/halloween`) or pastes a
+  funai.art link, pass it to `resolve_command` first (see the funai-tools-and-templates skill).
 - Describe the project, clips and changes in plain words. Session ids and project ids are
   for the tool calls only.
 - Before a change the person did not spell out (deleting clips, an auto edit, restyling every

@@ -1,7 +1,7 @@
 {
   "name": "funai-studio",
   "displayName": "FunAI Studio",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Generate images, video, audio, 3D and text with hundreds of AI models, Tools and templates. Connects the FunAI MCP server and adds skills for using it well.",
   "author": {
     "name": "FunAI",

@@ -11,6 +11,8 @@ the price with the person first, start one job, and follow it to the end.
 
 ## Rules that always apply
 
+- If the person types a FunAI slash command (`/remove-background`, `/halloween`) or pastes a
+  funai.art link, pass it to `resolve_command` first (see the funai-tools-and-templates skill).
 - Talk about models by **name and price**. Never ask for or show ids (model slugs, job ids,
   file ids).
 - **Always tell the person the price before you start a video** and wait for a yes. A

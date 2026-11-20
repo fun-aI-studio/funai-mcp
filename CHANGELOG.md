@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 - 2026-11-20
+
+- Skills: slash commands and funai.art links. `funai-tools-and-templates` covers
+  `resolve_command` and `list_categories`, and every other skill sends a typed command such as
+  `/remove-background` or `/halloween` there first.
+- README: slash commands, catalogue prompts, and the `search_docs` / `read_docs` tools.
+- Plugin manifests at 1.2.0. The `funai-mcp` npm bridge is unchanged at 1.1.0.
+
 ## 1.1.0 - 2026-11-19
 
 - `funai-mcp`, a stdio bridge to `https://mcp.funai.art` for clients without remote MCP

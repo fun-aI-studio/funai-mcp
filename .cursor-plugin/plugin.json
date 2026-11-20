@@ -2,7 +2,7 @@
   "name": "funai-studio",
   "displayName": "FunAI Studio",
   "description": "Generate images, video, audio, 3D and text with hundreds of AI models, Tools and templates.",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "author": {
     "name": "FunAI",
     "email": "support@funsoltech.com"

@@ -11,6 +11,8 @@ wants into one good call, at a price they agreed to, and show them the picture.
 
 ## Rules that always apply
 
+- If the person types a FunAI slash command (`/remove-background`, `/halloween`) or pastes a
+  funai.art link, pass it to `resolve_command` first (see the funai-tools-and-templates skill).
 - Talk about models by their **name and price** ("FLUX 2, about one cent an image").
   Never ask the person for an id, and never show them job ids, file ids or model slugs.
 - Pass the model's name in `model`. The server resolves names. If a name matches several
