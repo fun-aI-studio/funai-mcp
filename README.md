@@ -6,13 +6,14 @@ Generate images, video, audio, 3D and text with hundreds of AI models, Tools and
 from your AI assistant.
 
 FunAI runs a remote [Model Context Protocol](https://modelcontextprotocol.io) server at
-**`https://mcp.funai.art`**. Connect it to Claude, Cursor, VS Code or any MCP client, then ask
+**`https://mcp.funai.art`**. Connect it to Claude, Cursor, VS Code, Codex, OpenCode, Gemini CLI
+or any MCP client, then ask
 for an image, a video, a voiceover, music, a 3D asset or text. The result comes back in the
 same conversation, made on your FunAI account.
 
 This repository holds what the assistant directories need: plugin manifests for Cursor and
-Claude Code, [Agent Skills](skills/) that teach an assistant to use FunAI well, the
-[`funai-mcp`](npm/) stdio bridge for clients without remote MCP support, and the
+Claude Code, a Gemini CLI extension, [Agent Skills](skills/) that teach an assistant to use
+FunAI well, the [`funai-mcp`](npm/) stdio bridge for clients without remote MCP support, and the
 [MCP Registry](https://registry.modelcontextprotocol.io) entry ([`server.json`](server.json)).
 The server itself is not in this repository.
 
@@ -88,6 +89,84 @@ Or run **MCP: Add Server...** and choose HTTP, or add this to your `mcp.json`:
 
 VS Code asks you to sign in to FunAI the first time the server starts. Use FunAI from the
 **Agent** mode of Copilot Chat.
+
+### Codex (CLI, IDE extension and app)
+
+The Codex CLI, IDE extension and desktop app share `~/.codex/config.toml`. Add:
+
+```toml
+[mcp_servers.funai]
+url = "https://mcp.funai.art"
+tool_timeout_sec = 300
+
+[mcp_servers.funai.oauth]
+callback_port = 33418
+```
+
+Then sign in:
+
+```bash
+codex mcp login funai
+```
+
+Keep the callback port fixed (any free port works). Codex otherwise picks a new port on each
+sign-in, and FunAI's sign-in checks the redirect address exactly, so a later sign-in fails
+with `Invalid redirect_uri`. `codex mcp add funai --url https://mcp.funai.art` also works if
+you first put `mcp_oauth_callback_port = 33418` at the top of `config.toml`.
+
+With an API key instead: `codex mcp add funai --url https://mcp.funai.art --bearer-token-env-var FUNAI_API_KEY`.
+The config then holds only the variable's name.
+
+### OpenCode
+
+In `opencode.json` (the project's, or `~/.config/opencode/opencode.json` for every project).
+For OpenCode 2 (`@opencode/cli`, `opencode-v2`):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "funai": {
+        "type": "remote",
+        "url": "https://mcp.funai.art",
+        "oauth": { "callback_port": 33419 }
+      }
+    }
+  }
+}
+```
+
+For OpenCode 1 (`opencode-ai` on npm), the entry goes straight under `mcp`. Its sign-in
+already uses the fixed port 19876:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "funai": { "type": "remote", "url": "https://mcp.funai.art", "enabled": true, "timeout": 120000 }
+  }
+}
+```
+
+Then sign in with `opencode mcp auth funai`, or with `/mcps` inside OpenCode. With an API key
+instead, set `"oauth": false` and `"headers": { "Authorization": "Bearer {env:FUNAI_API_KEY}" }`.
+
+### Gemini CLI
+
+```bash
+gemini mcp add --scope user --transport http funai https://mcp.funai.art
+```
+
+Then run `/mcp auth funai` in Gemini CLI. Or install this repository as a Gemini CLI
+extension, which adds the server and the skills:
+
+```bash
+gemini extensions install https://github.com/fun-aI-studio/funai-mcp
+```
+
+With an API key instead, add `"headers": { "Authorization": "Bearer $FUNAI_API_KEY" }` to the
+`funai` entry in `~/.gemini/settings.json`. Gemini fills it in from the shell that starts it.
 
 ### ChatGPT
 
@@ -255,11 +334,12 @@ use FunAI well: names instead of ids, prices before paid runs, and the right too
 | [funai-spend-wisely](skills/funai-spend-wisely/SKILL.md) | Estimates, balance, spending limits, what to do when credits run out |
 | [funai-video-editor](skills/funai-video-editor/SKILL.md) | Editing an open FunAI editor project and server renders |
 
-They come with the Claude Code and Cursor plugins. Other ways to add them:
+They come with the Claude Code and Cursor plugins and the Gemini CLI extension. Other ways to add them:
 
 - Any agent that reads skills: `npx skills add fun-aI-studio/funai-mcp`
 - claude.ai: zip one skill folder and upload it under **Customize > Skills**.
-- Or copy a folder into `.claude/skills/`, `.cursor/skills/`, `.github/skills/` or `.agents/skills/`.
+- Or copy a folder into `.claude/skills/`, `.cursor/skills/`, `.github/skills/`,
+  `.opencode/skills/` or `.agents/skills/` (Codex and OpenCode read `.agents/skills/`).
 
 ## Repository layout
 
@@ -267,6 +347,7 @@ They come with the Claude Code and Cursor plugins. Other ways to add them:
 | --- | --- |
 | `.claude-plugin/` | Claude Code plugin (`plugin.json`) and marketplace (`marketplace.json`) |
 | `.cursor-plugin/plugin.json` | Cursor plugin manifest |
+| `gemini-extension.json` | Gemini CLI extension manifest |
 | `mcp.json`, `.mcp.json` | The remote server config the plugins install |
 | `skills/` | Agent Skills |
 | `npm/` | The `funai-mcp` stdio bridge |

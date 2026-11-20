@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 - 2026-11-20
+
+- README: setup for Codex, OpenCode (1 and 2) and Gemini CLI. Codex and OpenCode 2 pin the
+  OAuth callback port, because FunAI's sign-in checks the redirect address exactly.
+- `gemini-extension.json`: the repository installs as a Gemini CLI extension with the remote
+  server and the skills (`gemini extensions install https://github.com/fun-aI-studio/funai-mcp`).
+
 ## 1.2.0 - 2026-11-20
 
 - Skills: slash commands and funai.art links. `funai-tools-and-templates` covers

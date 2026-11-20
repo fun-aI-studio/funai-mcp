@@ -1,0 +1,14 @@
+{
+  "name": "funai",
+  "version": "1.2.0",
+  "description": "Generate images, video, audio, 3D and text with hundreds of AI models, Tools and templates, paid with FunAI credits.",
+  "mcpServers": {
+    "funai": {
+      "url": "https://mcp.funai.art",
+      "type": "http",
+      "oauth": {
+        "enabled": true
+      }
+    }
+  }
+}
