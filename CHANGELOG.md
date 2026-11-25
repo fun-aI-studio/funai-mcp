@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0 - 2026-11-25
+
+- The Claude plugin is now `funai` (it was `funai-studio`) and lives in `plugins/funai`. Its 27
+  skills are commands: `/funai:menu`, `/funai:image`, `/funai:remove-background` and more. They
+  show in the `/` menu of Claude chat, Cowork and Claude Code. An installed `funai-studio` moves
+  over through the marketplace's `renames` map; if Claude Code asks, run
+  `/plugin install funai@funai` once.
+- README: the plugin in the Claude app, an "Add FunAI to Claude" link, and what to do when tools
+  are blocked or no commands show.
+- Server 1.2.0: `show_menu` (a menu you can click), an upload page for files you have on your
+  device, and the same commands as Skills over MCP.
+
 ## 1.2.1 - 2026-11-20
 
 - README: setup for Codex, OpenCode (1 and 2) and Gemini CLI. Codex and OpenCode 2 pin the

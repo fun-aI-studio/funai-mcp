@@ -1,6 +1,6 @@
 {
   "name": "funai",
-  "description": "FunAI Studio for Claude Code: the FunAI MCP server and skills for images, video, audio, 3D and the FunAI video editor.",
+  "description": "FunAI for Claude: / commands for images, video, voice, music and 3D, and the FunAI MCP server.",
   "owner": {
     "name": "FunAI",
     "email": "support@funsoltech.com",
@@ -8,9 +8,9 @@
   },
   "plugins": [
     {
-      "name": "funai-studio",
-      "source": "./",
-      "description": "Generate images, video, audio, 3D and text with hundreds of AI models, Tools and templates, from Claude Code.",
+      "name": "funai",
+      "source": "./plugins/funai",
+      "description": "Type / and make images, video, voice, music and 3D with FunAI. Adds the / commands and connects the FunAI MCP server.",
       "category": "media",
       "tags": [
         "image",
@@ -20,5 +20,8 @@
         "mcp"
       ]
     }
-  ]
+  ],
+  "renames": {
+    "funai-studio": "funai"
+  }
 }

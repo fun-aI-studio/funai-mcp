@@ -11,8 +11,8 @@ or any MCP client, then ask
 for an image, a video, a voiceover, music, a 3D asset or text. The result comes back in the
 same conversation, made on your FunAI account.
 
-This repository holds what the assistant directories need: plugin manifests for Cursor and
-Claude Code, a Gemini CLI extension, [Agent Skills](skills/) that teach an assistant to use
+This repository holds what the assistants need: the [FunAI plugin for Claude](plugins/funai/)
+(the `/` commands), a Cursor plugin, a Gemini CLI extension, [Agent Skills](skills/) that teach an assistant to use
 FunAI well, the [`funai-mcp`](npm/) stdio bridge for clients without remote MCP support, and the
 [MCP Registry](https://registry.modelcontextprotocol.io) entry ([`server.json`](server.json)).
 The server itself is not in this repository.
@@ -44,9 +44,21 @@ approve. There is no API key to create or paste.
 
 ### Claude (claude.ai and Claude Desktop)
 
-1. Open **Settings > Connectors > Add custom connector**.
-2. Name it `FunAI` and enter `https://mcp.funai.art`.
-3. Sign in to FunAI, review the permissions, pick a spending limit, then choose **Allow**.
+The FunAI plugin adds the `/` commands and the connection together:
+
+1. Open [**Customize > Plugins**](https://claude.ai/customize/plugins) and choose
+   **Add > Add marketplace**.
+2. Enter `fun-ai-studio/funai-mcp`, then add **FunAI Studio**.
+3. On the plugin's **Connectors** tab, choose **Add** (or **Connect**). Sign in to FunAI, review
+   the permissions, pick a spending limit, then choose **Allow**.
+4. In a chat, type `/funai` and pick a command.
+
+Only want to ask in plain words? Add just the connector:
+[**Add FunAI to Claude**](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=FunAI&connectorUrl=https%3A%2F%2Fmcp.funai.art).
+The connector alone adds nothing to the `/` menu: ask for "the FunAI menu" instead.
+
+If Claude says a tool is blocked, open **Customize > Connectors > FunAI > Permissions** and choose
+"Needs approval". On a Team or Enterprise plan, an Owner may have to change it.
 
 ### Claude Code
 
@@ -56,11 +68,11 @@ claude mcp add --transport http funai https://mcp.funai.art
 
 Then run `/mcp` in Claude Code, select `funai` and choose **Authenticate**.
 
-To get the server together with the FunAI skills, install the plugin from this repository:
+To get the server together with the `/funai:` commands, install the plugin instead:
 
 ```text
-/plugin marketplace add fun-aI-studio/funai-mcp
-/plugin install funai-studio@funai
+/plugin marketplace add fun-ai-studio/funai-mcp
+/plugin install funai@funai
 ```
 
 ### Cursor
@@ -220,13 +232,13 @@ Paid tools are marked `readOnlyHint: false`, so clients ask before running them.
 
 | Area | Tools | Cost |
 | --- | --- | --- |
-| Slash commands and links | `resolve_command`, `list_categories` | free |
+| Menu, slash commands and links | `show_menu`, `resolve_command`, `list_categories` | free |
 | Find models and prices | `list_models`, `get_model_schema`, `estimate_cost` | free |
 | Your account | `get_credit_balance`, `list_generations`, `get_job_status` | free |
 | Generate | `generate_image`, `generate_video`, `generate_audio`, `generate_3d`, `generate_text` | spends credits |
 | Any model, every option | `run_model` | spends credits |
 | FunAI Tools and templates | `list_tools`, `list_templates` (free); `run_tool`, `apply_template` | spends credits |
-| Your files as input | `upload_file` | free (uses storage) |
+| Your files as input | `upload_file` (a page to drop a file on, or a direct upload) | free (uses storage) |
 | Stop a job | `cancel_job` | free while queued; full price once started, and only after you agree |
 | Video editor | `editor_sessions`, `editor_commands` (free); `editor_run` | billed commands spend credits |
 | Server render | `render_project`; `render_status` (free) | spends credits |
@@ -255,8 +267,9 @@ Commands come from the live catalogue, so new Tools and presets get one on their
 spellings and typos work (`/remove-bg`, `/lipsync`, `/haloween`), and the assistant says how
 it read a typo. Where a Tool and a task share a name, `/tools/upscale` opens the Tool and
 `/presets/<collection>` opens a collection. A command never spends anything on its own.
-Ask "which FunAI commands are there?" for the list. In Claude Code the tasks and collections
-are also commands of their own, such as `/mcp__funai__remove-background`.
+Ask for "the FunAI menu" for a list you can click. With the plugin, the main ones are in Claude's
+own `/` menu (`/funai:remove-background`). In Claude Code the tasks and collections are there
+without it too.
 
 Results get a shareable funai.art link that opens without signing in. Ask for a result to be
 private and the assistant passes `private: true`. Uploaded input files stay private to your
