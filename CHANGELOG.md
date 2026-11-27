@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1 - 2026-11-27
+
+- Plugin README: what the plugin runs, sends and stores, for the Claude directory review.
+
 ## 2.0.0 - 2026-11-25
 
 - The Claude plugin is now `funai` (it was `funai-studio`) and lives in `plugins/funai`. Its 27

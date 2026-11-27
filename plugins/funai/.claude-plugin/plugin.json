@@ -1,7 +1,7 @@
 {
   "name": "funai",
   "displayName": "FunAI Studio",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Type / and make images, video, voice, music and 3D with FunAI. Adds the / commands and connects the FunAI MCP server.",
   "author": {
     "name": "FunAI",
