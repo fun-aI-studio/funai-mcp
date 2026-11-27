@@ -68,11 +68,11 @@ claude mcp add --transport http funai https://mcp.funai.art
 
 Then run `/mcp` in Claude Code, select `funai` and choose **Authenticate**.
 
-To get the server together with the `/funai:` commands, install the plugin instead:
+To get the server together with the `/funai-studio:` commands, install the plugin instead:
 
 ```text
 /plugin marketplace add fun-ai-studio/funai-mcp
-/plugin install funai@funai
+/plugin install funai-studio@funai
 ```
 
 ### Cursor
@@ -268,7 +268,7 @@ spellings and typos work (`/remove-bg`, `/lipsync`, `/haloween`), and the assist
 it read a typo. Where a Tool and a task share a name, `/tools/upscale` opens the Tool and
 `/presets/<collection>` opens a collection. A command never spends anything on its own.
 Ask for "the FunAI menu" for a list you can click. With the plugin, the main ones are in Claude's
-own `/` menu (`/funai:remove-background`). In Claude Code the tasks and collections are there
+own `/` menu (`/funai-studio:remove-background`). In Claude Code the tasks and collections are there
 without it too.
 
 Results get a shareable funai.art link that opens without signing in. Ask for a result to be

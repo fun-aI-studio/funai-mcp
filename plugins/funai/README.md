@@ -20,10 +20,10 @@ or at least 10,000 credits. Every command shows the price first and runs only af
 
 ```text
 /plugin marketplace add fun-ai-studio/funai-mcp
-/plugin install funai@funai
+/plugin install funai-studio@funai
 ```
 
-Then run `/mcp`, choose `funai` and **Authenticate**. Type `/funai:` for the commands.
+Then run `/mcp`, choose `funai` and **Authenticate**. Type `/funai-studio:` for the commands.
 
 ## Commands
 

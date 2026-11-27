@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "funai",
+      "name": "funai-studio",
       "source": "./plugins/funai",
       "description": "Type / and make images, video, voice, music and 3D with FunAI. Adds the / commands and connects the FunAI MCP server.",
       "category": "media",
@@ -22,6 +22,6 @@
     }
   ],
   "renames": {
-    "funai-studio": "funai"
+    "funai": "funai-studio"
   }
 }

@@ -1,7 +1,11 @@
 # Changelog
 
-## 2.0.1 - 2026-11-27
+## 2.1.0 - 2026-11-27
 
+- The plugin is `funai-studio` again (Claude's directory refuses `funai` as too close to other listings). Commands are
+  `/funai-studio:image`, `/funai-studio:remove-background` and so on; typing `/funai` still finds them. An installed
+  `funai` moves over through the marketplace's `renames` map; if Claude Code asks, run `/plugin install funai-studio@funai`.
+- Author name "FunAI Studio".
 - Plugin README: what the plugin runs, sends and stores, for the Claude directory review.
 
 ## 2.0.0 - 2026-11-25
